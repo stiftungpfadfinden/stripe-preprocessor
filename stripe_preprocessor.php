@@ -1,66 +1,10 @@
 <?php
 
-require_once 'meinestiftung.civix.php';
+require_once 'stripe_preprocessor.civix.php';
 
-// phpcs:disable
-use CRM_Meinestiftung_ExtensionUtil as E;
-// phpcs:enable
+use CRM_StripePreprocessor_ExtensionUtil as E;
 
-/**
- * Implements hook_civicrm_config().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
- */
-function meinestiftung_civicrm_config(&$config): void {
-  _meinestiftung_civix_civicrm_config($config);
-}
-
-/**
- * Implements hook_civicrm_install().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
- */
-function meinestiftung_civicrm_install(): void {
-  _meinestiftung_civix_civicrm_install();
-}
-
-/**
- * Implements hook_civicrm_postInstall().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
- */
-function meinestiftung_civicrm_postInstall(): void {
-  _meinestiftung_civix_civicrm_postInstall();
-}
-
-/**
- * Implements hook_civicrm_uninstall().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
- */
-function meinestiftung_civicrm_uninstall(): void {
-  _meinestiftung_civix_civicrm_uninstall();
-}
-
-/**
- * Implements hook_civicrm_enable().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
- */
-function meinestiftung_civicrm_enable(): void {
-  _meinestiftung_civix_civicrm_enable();
-}
-
-/**
- * Implements hook_civicrm_disable().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
- */
-function meinestiftung_civicrm_disable(): void {
-  _meinestiftung_civix_civicrm_disable();
-}
-
-function meinestiftung_civicrm_alterPaymentProcessorParams($object, $propertyBag, array &$checkoutSessionParams) {
+function stripe_preprocessor_civicrm_alterPaymentProcessorParams($object, $propertyBag, array &$checkoutSessionParams) {
   // Log payment properties for testing
   CRM_Core_Error::debug_log_message(print_r($propertyBag,TRUE));
   CRM_Core_Error::debug_log_message(print_r($checkoutSessionParams,TRUE));
@@ -126,4 +70,31 @@ function meinestiftung_civicrm_alterPaymentProcessorParams($object, $propertyBag
   }
 
   CRM_Core_Error::debug_log_message(print_r($checkoutSessionParams,TRUE));
+}
+
+/**
+ * Implements hook_civicrm_config().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
+ */
+function stripe_preprocessor_civicrm_config(&$config): void {
+  _stripe_preprocessor_civix_civicrm_config($config);
+}
+
+/**
+ * Implements hook_civicrm_install().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
+ */
+function stripe_preprocessor_civicrm_install(): void {
+  _stripe_preprocessor_civix_civicrm_install();
+}
+
+/**
+ * Implements hook_civicrm_enable().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
+ */
+function stripe_preprocessor_civicrm_enable(): void {
+  _stripe_preprocessor_civix_civicrm_enable();
 }

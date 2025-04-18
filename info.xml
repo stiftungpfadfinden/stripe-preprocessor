@@ -1,34 +1,37 @@
 <?xml version="1.0"?>
-<extension key="meinestiftung" type="module">
-  <file>meinestiftung</file>
-  <name>Stiftung Pfadfinden: Transform Stripe payment data</name>
-  <description>Uses automatic Stripe payment intent and sends more sensible payment data and descriptions</description>
+<extension key="stripe-preprocessor" type="module">
+  <file>stripe_preprocessor</file>
+  <name>Stripe Preprocessor</name>
+  <description>Pre-process contribution data before it is sent to Stripe</description>
   <license>AGPL-3.0</license>
-  <maintainer>
-    <author>Andy Lietz</author>
-    <email>andy.lietz@stiftungpfadfinden.de</email>
-  </maintainer>
+  <authors>
+    <author>
+      <name>Andy Lietz</name>
+      <email>andy.lietz@stiftungpfadfinden.de</email>
+      <role>Maintainer</role>
+    </author>
+  </authors>
   <urls>
-    <url desc="Main Extension Page">http://FIXME</url>
-    <url desc="Documentation">http://FIXME</url>
-    <url desc="Support">http://FIXME</url>
-    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+    <url desc="Main Extension Page">https://github.com/stiftungpfadfinden/stripe-preprocessor</url>
+    <url desc="Documentation">https://github.com/stiftungpfadfinden/stripe-preprocessor</url>
+    <url desc="Support">https://stiftungpfadfinden.de</url>
+    <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2023-10-30</releaseDate>
-  <version>0.6</version>
-  <develStage>beta</develStage>
+  <releaseDate>2025-04-18</releaseDate>
+  <version>1.0.0</version>
+  <develStage>production</develStage>
   <compatibility>
-    <ver>5.78</ver>
+    <ver>5.82</ver>
   </compatibility>
-  <comments>Stable</comments>
+  <comments></comments>
   <classloader>
     <psr0 prefix="CRM_" path="."/>
     <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
   <civix>
-    <namespace>CRM/Meinestiftung</namespace>
-    <format>24.09.1</format>
-    <angularModule>crmMeinestiftung</angularModule>
+    <namespace>CRM/StripePreprocessor</namespace>
+    <format>25.01.1</format>
+    <angularModule>crmStripePreprocessor</angularModule>
   </civix>
   <mixins>
     <mixin>mgd-php@1.0.0</mixin>
