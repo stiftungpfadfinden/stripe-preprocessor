@@ -28,7 +28,9 @@ configure the [Stripe extension] with the API keys from the sandbox so that the
 when you set up your Stripe workflow in the first place.
 
 ### Data the extension receives
-When the user hits **Contribute** (or another payment button) in CiviCRM, the hook receives two PHP entities:
+When the user hits **Contribute** (or another payment button) in CiviCRM, the hook receives two PHP entities, `propertyBag` and `checkoutSessionParams`. These get
+logged at the beginning and the end of the script so you can see what data is available and how it is changed in the CiviCRM log. For production use, 
+it probably makes sense to disable logging.
 
 #### $propertyBag
 This object contains basically all data the user has entered for a contribution, event sign-up etc. It is read-only for our purposes and used by the
