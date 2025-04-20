@@ -12,7 +12,7 @@ If you set up a standard contribution page in CiviCRM that uses multiple price l
 To find out the name of the person that contributed, you need to click onto every Stripe transaction because the name isn't in the description line. Stripe also sets up an unnecessary "product" called **Contribution level** or whatever you called the price levels of your contributions.
 
 ### Events
-If you set up an event with different price levels, the payment shows up in Strip something like **Online-Veranstaltungsanmeldung: 1234567 #01234567890abcdef01234567890abcdef**
+If you set up an event with different price levels, the payment shows up in Stripe something like **Online-Veranstaltungsanmeldung: 1234567 #01234567890abcdef01234567890abcdef**
 
 You can't see the name of the person who signed up in the description. Items people chose for the event are shown as **Please select an item** etc. instead of just the item name.
 
