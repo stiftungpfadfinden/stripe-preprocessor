@@ -7,15 +7,13 @@ You can also disable sending choices for payment types like Credit Card, SEPA or
 payment types within Stripe only. This is very useful if you want to use PayPal via Stripe, because PayPal is not available as a payment intent in the [Stripe extension] settings.
 
 ### Contributions
-If you set up a standard contribution page in CiviCRM that uses multiple price levels your users can choose from, a contribution shows up in Stripe like this:
+If you set up a standard contribution page in CiviCRM that uses multiple price levels your users can choose from, a contribution shows up in Stripe like  **Online-Zuwendung: <Contribution page name> 1234567 #01234567890abcdef01234567890abcdef**
 
-#### Online-Zuwendung: <Contribution page name> 1234567 #01234567890abcdef01234567890abcdef
 To find out the name of the person that contributed, you need to click onto every Stripe transaction because the name isn't in the description line. Stripe also sets up an unnecessary "product" called **Contribution level** or whatever you called the price levels of your contributions.
 
 ### Events
-If you set up an event with different price levels, the payment shows up in Strip something like
+If you set up an event with different price levels, the payment shows up in Strip something like ** Online-Veranstaltungsanmeldung: 1234567 #01234567890abcdef01234567890abcdef**
 
-#### Online-Veranstaltungsanmeldung: 1234567 #01234567890abcdef01234567890abcdef
 You can't see the name of the person who signed up in the description. Items people chose for the event are shown as **Please select an item** etc. instead of just the item name.
 
 ## How to change data before it gets sent to Stripe
@@ -43,9 +41,9 @@ This array contains data to be sent to Stripe. We can change the data (like line
 
 ### Changing data before it is sent to Stripe
 The topmost PHP function in the script `stripe_preprocessor.php` is called when a payment is made. Please refer to the comments in this script to
-see how you can get data from `$propertyBag` use it to change data in `$checkoutSessionParams` before it gets sent to Stripe.
+see how you can get data from `$propertyBag` and use it to change data in `$checkoutSessionParams` before it gets sent to Stripe.
 
-To disable sending choices for payment types to Stripe (and configure them ourselves within Stripe), we have unset `$checkoutSessionParams["payment_method_types"])`.
+To disable sending choices for payment types to Stripe (and configure them ourselves within Stripe), we have unset `$checkoutSessionParams["payment_method_types"])`. This is not necessary for the data manipulation to work, but convenient if you need payment types like PayPal in Stripe that the [Stripe extension] does not handle.
 
 [Stripe extension]: https://lab.civicrm.org/extensions/stripe
 [developer sandbox]: https://docs.stripe.com/sandboxes
