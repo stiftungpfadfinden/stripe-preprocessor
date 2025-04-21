@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<extension key="stripe-preprocessor" type="module">
+<extension key="de.stiftungpfadfinden.stripe-preprocessor" type="module">
   <file>stripe_preprocessor</file>
   <name>Stripe Preprocessor</name>
   <description>Pre-process contribution data before it is sent to Stripe</description>
