@@ -7,12 +7,12 @@ You can also disable sending choices for payment types like Credit Card, SEPA or
 payment types within Stripe only. This is very useful if you want to use PayPal via Stripe, because PayPal is not available as a payment intent in the [Stripe extension] settings.
 
 ### Contributions
-If you set up a standard contribution page in CiviCRM that uses multiple price levels your users can choose from, a contribution shows up in Stripe like  **Online-Zuwendung: <Contribution page name> 1234567 #01234567890abcdef01234567890abcdef**
+If you set up a standard contribution page in CiviCRM that uses multiple price levels your users can choose from, a contribution shows up in Stripe as something like (depending on your CiviCRM language) `Online-Zuwendung: <Contribution page name>  <short id> #<32 character id>`
 
 To find out the name of the person that contributed, you need to click onto every Stripe transaction because the name isn't in the description line. Stripe also sets up an unnecessary "product" called **Contribution level** or whatever you called the price levels of your contributions.
 
 ### Events
-If you set up an event with different price levels, the payment shows up in Stripe something like **Online-Veranstaltungsanmeldung: 1234567 #01234567890abcdef01234567890abcdef**
+If you set up an event with different price levels, the payment shows up in Stripe something like `Online-Veranstaltungsanmeldung: <short id> #<32 character id>`
 
 You can't see the name of the person who signed up in the description. Items people chose for the event are shown as **Please select an item** etc. instead of just the item name.
 

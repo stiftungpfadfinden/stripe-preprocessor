@@ -1,5 +1,5 @@
-Package: stripe-preprocessor
-Copyright (C) 2025, FIXME <FIXME>
+Package: de.stiftungpfadfinden.stripe-preprocessor
+Copyright (C) 2025, Andy Lietz, Stiftung Pfadfinden <andy.lietz@stiftungpfadfinden.de>
 Licensed under the GNU Affero Public License 3.0 (below).
 
 -------------------------------------------------------------------------------
