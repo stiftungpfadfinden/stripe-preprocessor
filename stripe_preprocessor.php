@@ -4,11 +4,12 @@ require_once 'stripe_preprocessor.civix.php';
 
 use CRM_StripePreprocessor_ExtensionUtil as E;
 
-function stripe_preprocessor_civicrm_alterPaymentProcessorParams($object, $propertyBag, array &$checkoutSessionParams) {
+function stripe_preprocessor_civicrm_alterPaymentProcessorParams($object, $propertyBag, array &$checkoutSessionParams)
+{
   // Log payment properties for testing
-  CRM_Core_Error::debug_log_message(print_r($propertyBag,TRUE));
-  CRM_Core_Error::debug_log_message(print_r($checkoutSessionParams,TRUE));
-  
+  CRM_Core_Error::debug_log_message(print_r($propertyBag, TRUE));
+  CRM_Core_Error::debug_log_message(print_r($checkoutSessionParams, TRUE));
+
   // Let stripe decide which payment types to use
   unset($checkoutSessionParams["payment_method_types"]);
 
@@ -17,10 +18,10 @@ function stripe_preprocessor_civicrm_alterPaymentProcessorParams($object, $prope
   $last_name = $propertyBag->has('lastName') ? $propertyBag->getLastName() : '';
   $email = $propertyBag->getEmail;
   $unit_amount = $checkoutSessionParams['line_items'][0]['price_data']['unit_amount'];
-   
+
   // Is this a payment for an event registration or a contribution?
   // Don't change Stripe data for any other kinds of payment
-  if($propertyBag->has('eventID')) {
+  if ($propertyBag->has('eventID')) {
     // Event payment
     // Get event name
     $item_name = $propertyBag->has('item_name') ? $propertyBag->getCustomProperty('item_name') : '';
@@ -38,8 +39,10 @@ function stripe_preprocessor_civicrm_alterPaymentProcessorParams($object, $prope
     $contribution_source = $propertyBag->has('contribution_source') ? $propertyBag->getCustomProperty('contribution_source') : '';
     if (empty($first_name) and empty($last_name)) {
       $description = $contribution_type;
-    } else {
+    } elseif (empty($contribution_source)) {
       $description = "{$contribution_type} von {$first_name} {$last_name}";
+    } else {
+      $description = "{$contribution_type} von {$first_name} {$last_name}: {$contribution_source}";
     }
     // Set Stripe line item for invoicing
     $checkoutSessionParams['line_items'][0]['price_data']['product_data']['name'] = $contribution_type;
@@ -52,7 +55,7 @@ function stripe_preprocessor_civicrm_alterPaymentProcessorParams($object, $prope
     // Contribution Source
     if (empty($contribution_source)) {
       unset($checkoutSessionParams['line_items'][0]['price_data']['product_data']['description']);
-    } else { 
+    } else {
       $checkoutSessionParams['line_items'][0]['price_data']['product_data']['description'] = $contribution_source;
     }
   } else {
@@ -69,7 +72,7 @@ function stripe_preprocessor_civicrm_alterPaymentProcessorParams($object, $prope
     $checkoutSessionParams['subscription_data']['description'] = $description;
   }
 
-  CRM_Core_Error::debug_log_message(print_r($checkoutSessionParams,TRUE));
+  CRM_Core_Error::debug_log_message(print_r($checkoutSessionParams, TRUE));
 }
 
 /**
@@ -77,7 +80,8 @@ function stripe_preprocessor_civicrm_alterPaymentProcessorParams($object, $prope
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
  */
-function stripe_preprocessor_civicrm_config(&$config): void {
+function stripe_preprocessor_civicrm_config(&$config): void
+{
   _stripe_preprocessor_civix_civicrm_config($config);
 }
 
@@ -86,7 +90,8 @@ function stripe_preprocessor_civicrm_config(&$config): void {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
-function stripe_preprocessor_civicrm_install(): void {
+function stripe_preprocessor_civicrm_install(): void
+{
   _stripe_preprocessor_civix_civicrm_install();
 }
 
@@ -95,6 +100,7 @@ function stripe_preprocessor_civicrm_install(): void {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
-function stripe_preprocessor_civicrm_enable(): void {
+function stripe_preprocessor_civicrm_enable(): void
+{
   _stripe_preprocessor_civix_civicrm_enable();
 }
